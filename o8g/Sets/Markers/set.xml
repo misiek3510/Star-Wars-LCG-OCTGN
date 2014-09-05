@@ -225,5 +225,41 @@
 			<property name="AutoScript" value="" />
 			<property name="AutoAction" value="" />
 		</card>
+		<card id="6714e3d1-9eb0-4fed-8db9-4f9fd5f3f336" name="Next Phase Button">
+			<property name="Number" value="" />
+			<property name="Block" value="" />
+			<property name="Block Number" value="" />
+			<property name="Cost" value="" />
+			<property name="Edge Priority" value="" />
+			<property name="Force" value="" />
+			<property name="Side" value="" />
+			<property name="Affiliation" value="" />
+			<property name="Type" value="Button" />
+			<property name="Combat Icons" value="" />
+			<property name="Traits" value="" />
+			<property name="Text" value="" />
+			<property name="Damage Capacity" value="" />
+			<property name="Resources" value="" />
+			<property name="AutoScript" value="" />
+			<property name="AutoAction" value="" />
+		</card>
+		<card id="8ef674c8-5b55-47b3-842b-ac857b414cc1" name="Finish Engagement Button">
+			<property name="Number" value="" />
+			<property name="Block" value="" />
+			<property name="Block Number" value="" />
+			<property name="Cost" value="" />
+			<property name="Edge Priority" value="" />
+			<property name="Force" value="" />
+			<property name="Side" value="" />
+			<property name="Affiliation" value="" />
+			<property name="Type" value="Button" />
+			<property name="Combat Icons" value="" />
+			<property name="Traits" value="" />
+			<property name="Text" value="" />
+			<property name="Damage Capacity" value="" />
+			<property name="Resources" value="" />
+			<property name="AutoScript" value="" />
+			<property name="AutoAction" value="" />
+		</card>
    </cards>
 </set>

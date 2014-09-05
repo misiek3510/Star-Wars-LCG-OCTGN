@@ -447,9 +447,9 @@ def gameSetup(group, x = 0, y = 0):
       Affiliation.moveToTable(MPxOffset + (playerside * -380) - 25, MPyOffset + (playerside * 20) + yaxisMove(Affiliation))
       if getSetting('Buttons', True):
          if len(myAllies) == 1:
-            table.create("eeb4f11c-3bb0-4e84-bc4e-97f51bf2dbdc", (playerside * 340) - 25, (playerside * 20) + yaxisMove(Affiliation), 1, True) # The OK Button
-            table.create("92df7072-0613-4e76-9fb0-e1b2b6d46473", (playerside * 340) - 25, (playerside * 60) + yaxisMove(Affiliation), 1, True) # The Wait! Button
-            table.create("ef1f6e91-4d7f-4a10-963c-832953f985b8", (playerside * 340) - 25, (playerside * 100) + yaxisMove(Affiliation), 1, True) # The Actions? Button
+				table.create("eeb4f11c-3bb0-4e84-bc4e-97f51bf2dbdc", (playerside * 340) - 25, (playerside * 20) + yaxisMove(Affiliation), 1, True) # The OK Button
+				table.create("92df7072-0613-4e76-9fb0-e1b2b6d46473", (playerside * 340) - 25, (playerside * 60) + yaxisMove(Affiliation), 1, True) # The Wait! Button
+				table.create("ef1f6e91-4d7f-4a10-963c-832953f985b8", (playerside * 340) - 25, (playerside * 100) + yaxisMove(Affiliation), 1, True) # The Actions? Button
          else: # With multiplayer we place the buttons below each affiliation to save space
             table.create("eeb4f11c-3bb0-4e84-bc4e-97f51bf2dbdc", MPxOffset + (playerside * -340) - 25, MPyOffset + (playerside * 180) + yaxisMove(Affiliation), 1, True) # The OK Button
             table.create("92df7072-0613-4e76-9fb0-e1b2b6d46473", MPxOffset + (playerside * -390) - 25, MPyOffset + (playerside * 180) + yaxisMove(Affiliation), 1, True) # The Wait! Button
@@ -461,7 +461,7 @@ def gameSetup(group, x = 0, y = 0):
             BotD.moveToTable( MPxOffset + (playerside * -380) - 25, MPyOffset + (playerside * 95) + yaxisMove(Affiliation)) # move it next to the affiliation card for now.
             debugNotify("BOTD alternate is : {}".format(BotD.alternate))
             setGlobalVariable('Balance of the Force', str(BotD._id))
-      #else: setGlobalVariable('Active Player', me.name) # If we're DS, set ourselves as the current player, since the Dark Side goes first.
+      else: setGlobalVariable('Active Player', me.name) # If we're DS, set ourselves as the current player, since the Dark Side goes first.
       rnd(1,10)  # Allow time for the affiliation to be recognised
       notify("{} is representing the {}.".format(me,Affiliation))
       debugNotify("Shuffling Decks",3)
@@ -482,10 +482,12 @@ def defaultAction(card, x = 0, y = 0):
    mute()
    selectedAbility = eval(getGlobalVariable('Stored Effects'))
    if card.Type == 'Button': # The Special button cards.
-      if card.name == 'Wait!': BUTTON_Wait()
-      elif card.name == 'Actions?': BUTTON_Actions()
-      else: BUTTON_OK()
-      return
+		if card.name == 'Wait!': BUTTON_Wait()
+		elif card.name == 'Actions?': BUTTON_Actions()
+		elif card.name == 'Next Phase Button': BUTTON_NPH()
+		elif card.name == 'Finish Engagement Button': BUTTON_FEN()
+		else: BUTTON_OK()
+		return
    elif card.highlight == FateColor: 
       #whisper(":::ATTENTION::: No fate card automation yet I'm afraid :-(\nPlease do things manually for now.")
       notify("{} resolves the ability of fate card {}".format(me,card))
@@ -1796,6 +1798,16 @@ def BUTTON_Wait(group = None,x=0,y=0):
 
 def BUTTON_Actions(group = None,x=0,y=0):  
    notify("--- {} is waiting for opposing actions.".format(me))
+   
+def BUTTON_NPH(group = None,x=0,y=0):  
+   nextPhase()
+   
+def BUTTON_FEN(group = None,x=0,y=0):  
+   finishEngagement()
 
 def declarePass(group, x=0, y=0):
-   notify("--- {} Passes".format(me))    
+   notify("--- {} Passes".format(me))
+   
+def HELP_NPFEButtons(group,x=0,y=0): #My function to add 2 additional buttons (maximo aka misiek3510)
+	table.create("6714e3d1-9eb0-4fed-8db9-4f9fd5f3f336", (playerside * 420) - 25, (playerside * 60) + yaxisMove(Affiliation), 1, True) # The Next Phase Button
+	table.create("8ef674c8-5b55-47b3-842b-ac857b414cc1", (playerside * 480) - 25, (playerside * 60) + yaxisMove(Affiliation), 1, True) # The Finish Engagement Button
